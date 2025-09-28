@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>موقع الفقه الإسلامي</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+	<style>
+	body {
+		font-family: 'Cairo', Arial, sans-serif;
+		background: #f7f7f7;
+		margin: 0;
+		padding: 0;
+	}
+	body::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: 0;
+		background: url('https://www.transparenttextures.com/patterns/arabesque.png') repeat, linear-gradient(120deg, #e9ecef 60%, #b7e4c7 100%);
+		opacity: 0.13;
+		pointer-events: none;
+	}
+	header {
+		background: linear-gradient(90deg, #2d6a4f 0%, #40916c 100%);
+		color: #fff;
+		padding: 36px 0 24px 0;
+		text-align: center;
+		box-shadow: 0 2px 16px #0002;
+		position: relative;
+	}
+	.header-icon {
+		font-size: 2.5em;
+		margin-bottom: 8px;
+		display: block;
+	}
+	main {
+		max-width: 900px;
+		margin: 36px auto 30px auto;
+		background: #fff;
+		border-radius: 16px;
+		box-shadow: 0 4px 24px #0002;
+		padding: 36px 28px;
+		min-height: 60vh;
+		transition: box-shadow 0.3s;
+	}
+	main:hover {
+		box-shadow: 0 8px 32px #0003;
+	}
+	h1, h2 {
+		font-family: 'Cairo', Arial, sans-serif;
+	}
+	h2 {
+		color: #fff;
+		background: linear-gradient(90deg, #2d6a4f 60%, #d90429 100%);
+		border: none;
+		border-radius: 10px;
+		padding: 12px 22px;
+		display: inline-block;
+		box-shadow: 0 2px 12px #0002;
+		font-size: 1.35em;
+		margin-bottom: 18px;
+	}
+	h3 {
+		font-family: 'Cairo', Arial, sans-serif;
+		color: #222;
+		background: #f8f9fa;
+		border-radius: 6px;
+		padding: 7px 12px;
+		margin-bottom: 8px;
+		display: inline-block;
+		font-weight: 700;
+		box-shadow: 0 1px 4px #0001;
+	}
+	section {
+		margin-bottom: 38px;
+	}
+	footer {
+		text-align: center;
+		color: #fff;
+		padding: 18px 0 10px 0;
+		background: linear-gradient(90deg, #40916c 0%, #2d6a4f 100%);
+		margin-top: 50px;
+		font-size: 1.1em;
+		border-radius: 0 0 16px 16px;
+		box-shadow: 0 -2px 12px #0001;
+	}
+	footer .footer-links {
+		display: flex;
+		justify-content: center;
+		gap: 18px;
+		margin-bottom: 8px;
+	}
+	footer .footer-links a {
+		color: #fff;
+		text-decoration: underline;
+		font-size: 1.05em;
+		transition: color 0.2s;
+	}
+	footer .footer-links a:hover {
+		color: #d90429;
+	}
+	.sidebar {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 230px;
+		height: 100%;
+		background: #f8f9fa;
+		border-left: 2px solid #2d6a4f;
+		box-shadow: -2px 0 16px #0001;
+		padding: 38px 18px 18px 18px;
+		z-index: 1000;
+		direction: rtl;
+		overflow-y: auto;
+		transition: box-shadow 0.3s;
+	}
+	.sidebar:hover {
+		box-shadow: -4px 0 24px #0002;
+	}
+	.sidebar ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.sidebar ul li::before {
+		content: "📖 ";
+		font-size: 1em;
+		color: #40916c;
+		margin-left: 4px;
+	}
+	.sidebar ul > li > a[href^="#books"]::before {
+		content: "📚 ";
+		color: #d90429;
+	}
+	.sidebar ul ul li::before {
+		content: "📝 ";
+		color: #2d6a4f;
+	}
+	.sidebar ul ul li a:last-child::before {
+		content: none;
+	}
+	.sidebar li {
+		margin-bottom: 16px;
+	}
+	.sidebar a {
+		color: #2d6a4f;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 1.08em;
+		transition: color 0.2s, background 0.2s;
+		border-radius: 5px;
+		padding: 2px 6px;
+	}
+	.sidebar a:hover {
+		color: #fff;
+		background: #2d6a4f;
+	}
+	@media (max-width: 900px) {
+		.sidebar {
+			position: static;
+			width: 100%;
+			height: auto;
+			border-left: none;
+			box-shadow: none;
+			padding: 12px 8px;
+			margin-bottom: 18px;
+		}
+		main {
+			margin-right: 0;
+		}
+	}
+	main {
+		margin-right: 260px;
+	}
+	@media (max-width: 700px) {
+		.sidebar {
+			display: none;
+		}
+		#sidebarToggle {
+			display: block;
+			position: fixed;
+			top: 12px;
+			right: 12px;
+			z-index: 3000;
+			background: #2d6a4f;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 8px 18px;
+			font-size: 1.1em;
+			box-shadow: 0 2px 8px #0002;
+			cursor: pointer;
+		}
+	}
+	#sidebarToggle {
+		display: none;
+	}
+	@media (max-width: 600px) {
+		main {
+			padding: 10px 2vw;
+		}
+		h2 {
+			font-size: 1.1em;
+			padding: 8px 10px;
+		}
+		h3 {
+			font-size: 1em;
+			padding: 5px 7px;
+		}
+	}
+	#toTopBtn {
+		display: none;
+		position: fixed;
+		bottom: 30px;
+		left: 30px;
+		z-index: 2000;
+		font-size: 1.5em;
+		background: #2d6a4f;
+		color: #fff;
+		border: none;
+		border-radius: 50%;
+		width: 48px;
+		height: 48px;
+		box-shadow: 0 2px 8px #0002;
+		cursor: pointer;
+		transition: background 0.2s;
+	}
+	#toTopBtn:hover {
+		background: #d90429;
+	}
+	@media (prefers-color-scheme: dark) {
+		body {
+			background: #23272f;
+		}
+		main {
+			background: #23272f;
+			color: #f7f7f7;
+		}
+		h2 {
+			background: linear-gradient(90deg, #40916c 60%, #d90429 100%);
+		}
+		.sidebar {
+			background: #23272f;
+			color: #fff;
+		}
+		footer {
+			background: linear-gradient(90deg, #2d6a4f 0%, #40916c 100%);
+		}
+	}
+	</style>
+</head>
+<body>
+   <div class="sidebar">
+	   <h2 style="font-size:1.2em; margin-top:0;">فهرس المحتويات</h2>
+	   <ul>
+		   <li><a href="#about">ما هو الفقه؟</a></li>
+		   <li><a href="#importance">أهمية الفقه</a></li>
+		   <li><a href="#sections">أقسام الفقه</a></li>
+		   <li><a href="#sources">مصادر الفقه</a></li>
+		   <li>
+			   <a href="#books" id="books-link" onclick="toggleBooksList(event)">أهم كتب الفقه</a>
+			   <ul id="books-list" style="display:none; margin-right:18px;">
+				   <li><a href="#books" onclick="event.stopPropagation()">المدونة الكبرى</a> <a href="sharh1.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+				   <li><a href="#books" onclick="event.stopPropagation()">المجموع</a> <a href="sharh2.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+				   <li><a href="#books" onclick="event.stopPropagation()">المغني</a> <a href="sharh3.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+				   <li><a href="#books" onclick="event.stopPropagation()">بدائع الصنائع</a> <a href="sharh4.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+				   <li><a href="#books" onclick="event.stopPropagation()">فتح القدير</a> <a href="sharh5.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+				   <li><a href="#books" onclick="event.stopPropagation()">الشرح الكبير</a> <a href="sharh6.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+				   <li><a href="#books" onclick="event.stopPropagation()">الروض المربع</a> <a href="sharh7.html" target="_blank" style='color:#888;font-size:0.9em;' onclick="event.stopPropagation()">للشرح</a></li>
+			   </ul>
+		   </li>
+	   </ul>
+   </div>
+   <header>
+      <span class="header-icon">📚</span>
+      <h1 style="font-family:'Cairo',Arial,sans-serif;font-weight:900;letter-spacing:1px;">موقع الفقه الإسلامي</h1>
+      <p style="font-size:1.1em;">دليلك المبسط لفهم علم الفقه وأقسامه</p>
+   </header>
+   <main>
+		   <section id="about">
+			   <h2>ما هو الفقه؟</h2>
+			   <h3>الفقه هو العلم بالأحكام الشرعية العملية المستنبطة من الأدلة التفصيلية. يهتم الفقه بتنظيم حياة المسلم من خلال بيان الحلال والحرام والواجب والمندوب والمكروه والمباح.</h3>
+		   </section>
+		   <section id="importance">
+			   <h2>أهمية الفقه</h2>
+			   <h3>
+			يعد الفقه من أهم العلوم الإسلامية، فهو يرشد المسلم إلى كيفية أداء العبادات والمعاملات بشكل صحيح، ويحقق التوازن في حياة الفرد والمجتمع.<br>
+			كما أن الفقه يوضح للمسلم كيفية التعامل مع الآخرين وفقًا للشريعة الإسلامية.<br>
+			يساعد الفقه في فهم الأحكام المتعلقة بالعبادات والمعاملات.<br>
+			يمنح الفقه المسلم القدرة على التمييز بين الحلال والحرام.<br>
+			يُسهم الفقه في بناء مجتمع متماسك ومتعاون.<br>
+			يُعزز الفقه من روح المسؤولية لدى الفرد تجاه نفسه وتجاه مجتمعه.<br>
+			يُساعد الفقه في حل المشكلات اليومية التي تواجه المسلم.<br>
+			يُرشد الفقه المسلم إلى الطريق الصحيح في جميع شؤون حياته.<br>
+			يُعد الفقه وسيلة لفهم مقاصد الشريعة الإسلامية.<br>
+			يُسهم الفقه في تحقيق العدالة والمساواة بين أفراد المجتمع.<br>
+			يُساعد الفقه في تنظيم العلاقات الأسرية والاجتماعية.<br>
+			يُعزز الفقه من قيم التسامح والتعاون بين الناس.<br>
+			يُسهم الفقه في حماية حقوق الأفراد والجماعات.<br>
+			يُساعد الفقه في بناء شخصية المسلم المتزنة.<br>
+			يُعد الفقه أساسًا لفهم باقي العلوم الإسلامية.
+			</h3>
+		</section>
+		   <section id="sections">
+			   <h2>أقسام الفقه</h2>
+			<ul>
+				<li><h3>فقه العبادات: <span style="font-weight:normal">مثل الصلاة، الصيام، الزكاة، والحج.</span></h3></li>
+				<li><h3>فقه المعاملات: <span style="font-weight:normal">مثل البيع، الشراء، الإيجار، والوقف.</span></h3></li>
+				<li><h3>فقه الأسرة: <span style="font-weight:normal">مثل الزواج، الطلاق، والمواريث.</span></h3></li>
+				<li><h3>فقه الجنايات: <span style="font-weight:normal">مثل الحدود والقصاص.</span></h3></li>
+			</ul>
+		</section>
+		   <section id="sources">
+			   <h2>مصادر الفقه</h2>
+			<ol>
+				<li><h3>القرآن الكريم</h3></li>
+				<li><h3>السنة النبوية</h3></li>
+				<li><h3>الإجماع</h3></li>
+				<li><h3>القياس</h3></li>
+			</ol>
+		</section>
+		   <section id="books">
+			   <h2>أهم كتب الفقه</h2>
+			<h3>توجد العديد من الكتب التي تعد مراجع أساسية في علم الفقه الإسلامي، من أبرزها:</h3>
+			   <h3>المدونة الكبرى <span style="font-weight:normal">للإمام مالك</span></h3>
+			   <h3>المجموع <span style="font-weight:normal">للإمام النووي</span></h3>
+			   <h3>المغني <span style="font-weight:normal">لابن قدامة</span></h3>
+			   <h3>بدائع الصنائع <span style="font-weight:normal">للكاساني</span></h3>
+			   <h3>فتح القدير <span style="font-weight:normal">لابن الهمام</span></h3>
+			   <h3>الشرح الكبير <span style="font-weight:normal">للدردير</span></h3>
+			   <h3>الروض المربع <span style="font-weight:normal">لمنصور البهوتي</span></h3>
+			<h3 style="font-weight:normal">وغيرها من الكتب التي تناولت مسائل الفقه بمذاهبه المختلفة، وتعد هذه الكتب مصادر هامة للعلماء وطلاب العلم لفهم الأحكام الشرعية وتفصيلاتها.</h3>
+		</section>
+	</main>
+	<footer>
+		<div class="footer-links">
+			<a href="mailto:info@fiqh.com">تواصل</a>
+			<a href="https://t.me/fiqh_channel" target="_blank">قناة التليجرام</a>
+			<a href="#about">عن الموقع</a>
+		</div>
+		&copy; 2025 موقع الفقه الإسلامي
+	</footer>
+	<button onclick="scrollToTop()" id="toTopBtn" title="العودة للأعلى">↑</button>
+	<button id="sidebarToggle" onclick="toggleSidebar()">☰ القائمة</button>
+</body>
+</html>
+<script>
+function toggleBooksList(event) {
+	event.preventDefault();
+	var list = document.getElementById('books-list');
+	if (list.style.display === 'none') {
+		list.style.display = 'block';
+	} else {
+		list.style.display = 'none';
+	}
+}
+// زر الصعود للأعلى
+let toTopBtn = document.getElementById("toTopBtn");
+window.onscroll = function() {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        toTopBtn.style.display = "block";
+    } else {
+        toTopBtn.style.display = "none";
+    }
+};
+function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+// إظهار/إخفاء الفهرس للجوال
+function toggleSidebar() {
+    var sidebar = document.querySelector('.sidebar');
+    if (sidebar.style.display === 'block') {
+        sidebar.style.display = 'none';
+    } else {
+        sidebar.style.display = 'block';
+        sidebar.scrollIntoView({behavior:'smooth'});
+    }
+}
+</script>
